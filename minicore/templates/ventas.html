@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Ventas</h1>
+
+    <form method="get">
+        <label>Desde: <input type="date" name="fecha_inicio" value="{{ fecha_inicio }}"></label>
+        <label>Hasta: <input type="date" name="fecha_fin" value="{{ fecha_fin }}"></label>
+        <button type="submit">Filtrar</button>
+        <a href="{% url 'listar_ventas' %}">Limpiar</a>
+    </form>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Vendedor</th>
+            <th>Fecha</th>
+            <th>Monto</th>
+            <th>Comision</th>
+        </tr>
+        {% for item in ventas_con_comision %}
+        <tr>
+            <td>{{ item.venta.id }}</td>
+            <td>{{ item.venta.vendedor.nombre }}</td>
+            <td>{{ item.venta.fecha }}</td>
+            <td>{{ item.venta.monto }}</td>
+            <td>{{ item.comision }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No hay ventas en este rango de fechas.</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Volver al inicio</a>
+{% endblock %}

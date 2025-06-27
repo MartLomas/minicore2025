@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Vendedores</h1>
+<table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+        </tr>
+        {% for vendedor in vendedores %}
+        <tr>
+            <td>{{ vendedor.id }}</td>
+            <td>{{ vendedor.nombre }}</td>
+        </tr>
+        {% endfor %}
+</table>
+<a href="/">Volver al inicio</a>
+
+{% endblock %}
